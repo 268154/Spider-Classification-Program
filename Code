@@ -1,0 +1,28 @@
+##Inheritance Example
+
+class domain:
+    def __init__(self):
+        self.attributePerson = "Eukaryote: cells that contain a membrane bound nucleus and organelles"
+
+class kingdom(domain):
+    def __init__(self):
+        super().__init__()
+        self.attributeStudent = "They belong to the Animalia which means they are multicellular, consume other animals for food, and they can move around"
+       
+class phylum(kingdom):
+    def __init__(self):
+        super().__init__()
+        self.attributeStudent = "They belong to the anthropoda phylum which means they have a segmented body,jointed appendages, and an exoskeleton"
+      
+class class_(phylum):
+    def __init__(self):
+        super().__init__()
+        self.attributeStudent = "Students have lockers"
+class Order(Class):
+    def __init__(self):
+        super().__init__()
+        self.attributeStudent = "Students have lockers"
+class Student(Person):
+    def __init__(self):
+        super().__init__()
+        self.attributeStudent = "Students have lockers"
