@@ -1,28 +1,115 @@
-##Inheritance Example
+class Domain:
+    def __init__(self):
+        self.characteristic = "Eukaryote, meaning it has cells that contain a membrane-bound nucleus and organelles."
 
-class domain:
+class Kingdom(Domain):
     def __init__(self):
-        self.attributePerson = "Eukaryote: cells that contain a membrane bound nucleus and organelles"
+        super().__init__()
+        self.characteristic = "Animalia, which means it is multicellular, consumes other organisms for food, and can move."
 
-class kingdom(domain):
+class Phylum(Kingdom):
     def __init__(self):
         super().__init__()
-        self.attributeStudent = "They belong to the Animalia which means they are multicellular, consume other animals for food, and they can move around"
-       
-class phylum(kingdom):
+        self.characteristic = "Arthropoda, which means it has a segmented body, jointed appendages, and an exoskeleton."
+
+class Class_(Phylum):
     def __init__(self):
         super().__init__()
-        self.attributeStudent = "They belong to the anthropoda phylum which means they have a segmented body,jointed appendages, and an exoskeleton"
-      
-class class_(phylum):
+        self.characteristic = "Arachnida, meaning it has 8 legs, two body segments, and no antennae."
+
+class Order(Class_):
     def __init__(self):
         super().__init__()
-        self.attributeStudent = "Students have lockers"
-class Order(Class):
+        self.characteristic = "Araneae, which means it has 8 eyes, fangs, and can produce silk."
+
+# Family classes
+class Theridiidae(Order):
     def __init__(self):
         super().__init__()
-        self.attributeStudent = "Students have lockers"
-class Student(Person):
+        self.family_name = "Theridiidae (Cobweb spiders)"
+        self.family_info = "They are known for creating tangled, irregular webs."
+
+class Salticidae(Order):
     def __init__(self):
         super().__init__()
-        self.attributeStudent = "Students have lockers"
+        self.family_name = "Salticidae (Jumping spiders)"
+        self.family_info = "They have excellent vision and are skilled jumpers."
+
+class Lycosidae(Order):
+    def __init__(self):
+        super().__init__()
+        self.family_name = "Lycosidae (Wolf spiders)"
+        self.family_info = "They are fast hunters that do not rely on webs."
+
+class Araneidae(Order):
+    def __init__(self):
+        super().__init__()
+        self.family_name = "Araneidae (Orb-weaver spiders)"
+        self.family_info = "They are known for building large, spiral wheel-shaped webs."
+
+class Thomisidae(Order):
+    def __init__(self):
+        super().__init__()
+        self.family_name = "Thomisidae (Crab spiders)"
+        self.family_info = "They are ambush predators that can walk sideways."
+
+class Pholcidae(Order):
+    def __init__(self):
+        super().__init__()
+        self.family_name = "Pholcidae (Cellar spiders)"
+        self.family_info = "They have long, thin legs and create delicate webs."
+
+class Sicariidae(Order):
+    def __init__(self):
+        super().__init__()
+        self.family_name = "Sicariidae (Recluse spiders)"
+        self.family_info = "They are venomous and known for necrotic bites."
+
+# Species class
+class Species:
+    def __init__(self, family, name, description):
+        self.family = family
+        self.name = name
+        self.description = description
+    
+    def display_info(self):
+        # Output as a paragraph
+        print(
+            f"\nThe {self.name} belongs to the {self.family.family_name}. {self.family.family_info} "
+            f"It is part of the order {Order().characteristic} "
+            f"under the class {Class_().characteristic}. "
+            f"This species falls within the phylum {Phylum().characteristic}, "
+            f"which is in the kingdom {Kingdom().characteristic}. "
+            f"At the top level, it is a {Domain().characteristic} "
+            f"Specifically, it is known for the following traits: {self.description}."
+        )
+
+# Create instances for 12 species
+spiders = [
+    Species(Theridiidae(), "Latrodectus mactans", "Black Widow: venomous, known for red hourglass marking."),
+    Species(Theridiidae(), "Steatoda grossa", "False Black Widow: similar to black widow but less venomous."),
+    Species(Salticidae(), "Phidippus audax", "Bold Jumping Spider: known for its iridescent chelicerae."),
+    Species(Salticidae(), "Salticus scenicus", "Zebra Spider: black and white striped body."),
+    Species(Lycosidae(), "Hogna carolinensis", "Carolina Wolf Spider: large, fast, hunts at night."),
+    Species(Lycosidae(), "Pardosa milvina", "Thin-legged Wolf Spider: hunts insects on the ground."),
+    Species(Araneidae(), "Argiope aurantia", "Yellow Garden Spider: known for large, zig-zag webs."),
+    Species(Araneidae(), "Araneus diadematus", "European Garden Spider: builds spiral wheel-shaped webs."),
+    Species(Thomisidae(), "Misumena vatia", "Goldenrod Crab Spider: changes color based on environment."),
+    Species(Thomisidae(), "Xysticus cristatus", "Ground Crab Spider: camouflages in leaf litter."),
+    Species(Pholcidae(), "Pholcus phalangioides", "Daddy Longlegs: long, thin legs and delicate web."),
+    Species(Sicariidae(), "Loxosceles reclusa", "Brown Recluse: venomous, violin-shaped marking on back."),
+]
+
+# Display spider list and let the user select one
+print("Choose a spider species to view details:\n")
+for i, spider in enumerate(spiders, 1):
+    print(f"{i}. {spider.name}")
+
+try:
+    choice = int(input("\nEnter the number of the spider: ")) - 1
+    if 0 <= choice < len(spiders):
+        spiders[choice].display_info()
+    else:
+        print("\nInvalid choice. Please try again.")
+except ValueError:
+    print("\nInvalid input. Please enter a number.")
